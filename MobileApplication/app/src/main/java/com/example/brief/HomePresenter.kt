@@ -2,12 +2,12 @@ package com.example.brief
 
 class HomePresenter(val view: HomeContract.View) : HomeContract.InteractionListener {
 
-    override fun getItems() {
-        view.renderItems(listOfPhotos())
+    override fun getImages() {
+        view.renderImages(getImageURLs())
         view.showProgressBar(false)
     }
 
-    private fun listOfPhotos(): MutableList<String> {
+    private fun getImageURLs(): MutableList<String> {
         view.showProgressBar(true)
         return listOf("http://t1.gstatic.com/images?q=tbn:ANd9GcS0cjDhf5MPvwP-yjPWeAJMSsrAEb QoFeRQU78-B-F0fftw5OdBrwr4o1Uy",
                 "http://t2.gstatic.com/images?q=tbn:ANd9GcQob9105oHMBENJBgrmXmTCRSs14m8FVZfOf25WTN7lO3qT-GJs6N_YXG7G",

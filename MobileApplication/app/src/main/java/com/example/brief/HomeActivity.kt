@@ -15,9 +15,9 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
         HomePresenter(this)
     }
 
-    private val photosAdapter by lazy {
-        val photosAdapter = PhotoAdapter()
-        photosAdapter
+    private val imageAdapter by lazy {
+        val adapter = ImageAdapter()
+        adapter
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,24 +27,24 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
         recyclerView = findViewById(R.id.items_recyclerview)
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
-        recyclerView.adapter = photosAdapter
+        recyclerView.adapter = imageAdapter
 
         swipeContainer.setOnRefreshListener {
-            presenter.getItems()
+            presenter.getImages()
         }
     }
 
     override fun onResume() {
         super.onResume()
-        presenter.getItems()
+        presenter.getImages()
     }
 
     override fun showProgressBar(visibility: Boolean) {
         if (visibility) progressBar.visible() else progressBar.invisible()
     }
 
-    override fun renderItems(photos: MutableList<String>) {
-        photosAdapter.addPhotos(photos)
+    override fun renderImages(list: MutableList<String>) {
+        imageAdapter.addImages(list)
         swipeContainer.refreshed()
     }
 

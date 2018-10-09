@@ -4,10 +4,10 @@ interface HomeContract {
 
     interface View {
         fun showProgressBar(visibility: Boolean)
-        fun renderItems(photos: MutableList<String>)
+        fun renderImages(list: MutableList<String>)
     }
 
     interface InteractionListener {
-        fun getItems()
+        fun getImages()
     }
 }
