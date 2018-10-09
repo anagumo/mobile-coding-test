@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.View
 import kotlinx.android.synthetic.main.activity_home.*
 
 
@@ -41,15 +40,12 @@ class HomeActivity : AppCompatActivity(), HomeContract.View {
     }
 
     override fun showProgressBar(visibility: Boolean) {
-        if (visibility)
-            progressBar.visibility = View.VISIBLE
-        else
-            progressBar.visibility = View.INVISIBLE
+        if (visibility) progressBar.visible() else progressBar.invisible()
     }
 
     override fun renderItems(photos: MutableList<String>) {
         photosAdapter.addPhotos(photos)
-        swipeContainer.isRefreshing = false
+        swipeContainer.refreshed()
     }
 
 }

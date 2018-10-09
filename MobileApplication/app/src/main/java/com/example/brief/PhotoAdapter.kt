@@ -1,11 +1,9 @@
 package com.example.brief
 
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import com.squareup.picasso.Picasso
 
 class PhotoAdapter : RecyclerView.Adapter<PhotoAdapter.PhotoHolder>() {
 
@@ -14,7 +12,7 @@ class PhotoAdapter : RecyclerView.Adapter<PhotoAdapter.PhotoHolder>() {
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_photo, parent, false)
+        val view = parent.inflate(R.layout.item_photo)
 
         return PhotoHolder(view)
     }
@@ -25,11 +23,7 @@ class PhotoAdapter : RecyclerView.Adapter<PhotoAdapter.PhotoHolder>() {
 
     override fun onBindViewHolder(holder: PhotoHolder, position: Int) {
         val photo = photos[position]
-        Picasso
-                .get()
-                .load(photo)
-                .error(R.drawable.ic_launcher_foreground)
-                .into(holder.imageView)
+        holder.imageView.loadUrl(photo, R.drawable.ic_launcher_background)
     }
 
     fun addPhotos(photos: MutableList<String>) {
